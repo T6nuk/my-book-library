@@ -125,35 +125,27 @@ const span = document.getElementsByClassName("close")[0];
 
 // create new Book object from form data
 let form = document.querySelector("#book-info");
-function addBooks() {
-  btn.onclick = function () {
-    modal.style.display = "block";
-  };
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-  form.addEventListener("submit", (Event) => {
-    let bookTitle = document.querySelector("#title");
-    let bookAuthor = document.querySelector("#author");
-    let bookGenre = document.querySelector("#genre");
-    let bookPages = document.querySelector("#pages");
-    let bookDescription = document.querySelector("#description");
-    let bookImage = document.querySelector("#image");
-    let bookStatus = document.querySelector("#status");
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+span.onclick = function () {
+  modal.style.display = "none";
+};
+form.addEventListener("submit", addBooks);
+function addBooks(Event) {
+  Event.preventDefault();
+  const title = form.title.value;
+  const author = form.author.value;
+  const genre = form.genre.value;
+  const pages = form.pages.value;
+  const description = form.description.value;
+  const image = form.image.value;
+  const status = form.status.value;
+  addBookToLibrary(title, author, genre, pages, description, image, status);
 
-    const title = bookTitle.value;
-    const author = bookAuthor.value;
-    const genre = bookGenre.value;
-    const pages = bookPages.value;
-    const description = bookDescription.value;
-    const image = bookImage.value;
-    const status = bookStatus.value;
-    addBookToLibrary(title, author, genre, pages, description, image, status);
-    bookCards.textContent = "";
-    modal.style.display = "none";
-    displayBooks();
-    Event.preventDefault();
-  });
+  modal.style.display = "none";
+  bookCards.textContent = "";
+  displayBooks();
 }
 addBooks();
 
