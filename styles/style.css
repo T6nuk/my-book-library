@@ -1,13 +1,31 @@
 #book-cards {
   display: grid;
   gap: 5px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
   grid-auto-rows: max-content;
+  justify-content: left;
 }
 #book-cards > div {
   border: 1px solid black;
   border-radius: 3px;
 }
+table {
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 3%;
+  box-shadow: 2px 1px 1px rgb(195, 197, 195);
+}
+table > button {
+  background-color: #e59797;
+  border: none;
+  border-radius: 3px;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+tbody {
+  text-align: left;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -43,4 +61,15 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+#modal-btn {
+  margin-bottom: 5px;
+  color: rgb(72, 102, 72);
+  background-color: rgb(189, 243, 189);
+  border-radius: 4px;
+  border: 0;
+  box-shadow: 1px 1px;
+  opacity: 75%;
+  height: 1.5rem;
+  width: 1.5rem;
 }

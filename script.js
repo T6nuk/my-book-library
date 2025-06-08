@@ -33,6 +33,7 @@ function addBookToLibrary(
   image,
   status
 ) {
+  const id = crypto.randomUUID();
   const newBook = new Book(
     title,
     author,
@@ -41,7 +42,7 @@ function addBookToLibrary(
     description,
     image,
     status,
-    (id = crypto.randomUUID())
+    id
   );
   myLibrary.push(newBook);
 }
@@ -76,10 +77,11 @@ const bookCards = document.getElementById("book-cards");
 
 function displayBooks() {
   myLibrary.forEach((book) => {
+    const div = document.createElement("div");
     const table = document.createElement("table");
     const tBody = document.createElement("tbody");
     const button = document.createElement("button");
-    button.textContent = "Remove";
+    button.textContent = "X";
     button.addEventListener("click", (Event) => {
       removeBooks(myLibrary, book.id);
       console.log(myLibrary);
@@ -120,10 +122,9 @@ displayBooks();
 // adding a book, modal
 
 const modal = document.getElementById("bookform");
-const btn = document.getElementById("modalBtn");
+const btn = document.getElementById("modal-btn");
 const span = document.getElementsByClassName("close")[0];
 
-// create new Book object from form data
 let form = document.querySelector("#book-info");
 btn.onclick = function () {
   modal.style.display = "block";
