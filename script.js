@@ -1,4 +1,9 @@
 // Write a constructor for making “Book” objects
+
+// TODO
+// add images to books
+//
+
 const myLibrary = [];
 
 function Book(title, author, genre, pages, description, image, status, id) {
@@ -145,6 +150,8 @@ span.onclick = function () {
   modal.style.display = "none";
 };
 form.addEventListener("submit", addBooks);
+const bookStatus = document.querySelector("#status");
+
 function addBooks(Event) {
   Event.preventDefault();
   const title = form.title.value;
@@ -153,14 +160,14 @@ function addBooks(Event) {
   const pages = form.pages.value;
   const description = form.description.value;
   const image = form.image.value;
-  const status = form.status.value;
+  const status = bookStatus.checked ? "read" : "unread";
+
   addBookToLibrary(title, author, genre, pages, description, image, status);
 
   modal.style.display = "none";
   bookCards.textContent = "";
   displayBooks();
 }
-addBooks();
 
 function removeBooks(arr, id) {
   const objectIndex = arr.findIndex((obj) => obj.id === id);
