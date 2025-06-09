@@ -78,20 +78,32 @@ const bookCards = document.getElementById("book-cards");
 function displayBooks() {
   myLibrary.forEach((book) => {
     const div = document.createElement("div");
+    div.classList.add("book-buttons");
     const table = document.createElement("table");
     const tBody = document.createElement("tbody");
     const button = document.createElement("button");
+    button.classList.add("remove-button");
     button.textContent = "X";
-    button.addEventListener("click", (Event) => {
+    button.addEventListener("click", () => {
       removeBooks(myLibrary, book.id);
       console.log(myLibrary);
+      bookCards.textContent = "";
+      displayBooks();
+    });
+    const statusButton = document.createElement("button");
+    statusButton.classList.add("status-button");
+    statusButton.textContent = "Status";
+    statusButton.addEventListener("click", () => {
+      toggleStatus(book.id);
       bookCards.textContent = "";
       displayBooks();
     });
 
     bookCards.appendChild(table);
     table.appendChild(tBody);
-    table.appendChild(button);
+    table.appendChild(div);
+    div.appendChild(button);
+    div.appendChild(statusButton);
     table.dataset.id = book.id;
     console.log(book.id);
 
@@ -154,4 +166,14 @@ function removeBooks(arr, id) {
   const objectIndex = arr.findIndex((obj) => obj.id === id);
   arr.splice(objectIndex, 1);
   return arr;
+}
+function toggleStatus(bookId) {
+  const book = myLibrary.find((b) => b.id === bookId);
+  if (book) {
+    if (book.status === "read") {
+      book.status = "unread";
+    } else {
+      book.status = "read";
+    }
+  }
 }

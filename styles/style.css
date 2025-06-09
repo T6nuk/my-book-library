@@ -15,7 +15,18 @@ table {
   border-radius: 3%;
   box-shadow: 2px 1px 1px rgb(195, 197, 195);
 }
-table > button {
+.book-buttons {
+  display: flex;
+  gap: 10px;
+}
+.status-button {
+  background-color: #dddada;
+  border: none;
+  border-radius: 3px;
+  width: fit-content;
+  height: 1.5rem;
+}
+.remove-button {
   background-color: #e59797;
   border: none;
   border-radius: 3px;
