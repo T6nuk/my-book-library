@@ -6,27 +6,56 @@
 
 const myLibrary = [];
 
-function Book(title, author, genre, pages, description, image, status, id) {
-  this.title = title;
-  this.author = author;
-  this.genre = genre;
-  this.pages = pages;
-  this.description = description;
-  this.image = image;
-  this.status = status;
-  this.id = id;
+// constructor
 
-  this.displayInfo = function () {
-    return [
-      this.title,
-      this.author,
-      this.genre,
-      this.pages,
-      this.description,
-      this.image,
-      this.status,
-    ];
-  };
+// function Book(title, author, genre, pages, description, image, status, id) {
+//   this.title = title;
+//   this.author = author;
+//   this.genre = genre;
+//   this.pages = pages;
+//   this.description = description;
+//   this.image = image;
+//   this.status = status;
+//   this.id = id;
+
+//   this.displayInfo = function () {
+//     return [
+//       this.title,
+//       this.author,
+//       this.genre,
+//       this.pages,
+//       this.description,
+//       this.image,
+//       this.status,
+//     ];
+//   };
+// }
+
+// class
+
+class Book {
+  constructor(title, author, genre, pages, description, image, status, id) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.pages = pages;
+    this.description = description;
+    this.image = image;
+    this.status = status;
+    this.id = id;
+  }
+
+  get bookInfo() {
+    return `${this.title}
+            ${this.author}
+            ${this.genre}
+            ${this.pages}
+            ${this.description}
+            ${this.image}
+            ${this.status}
+            ${this.id}
+            `;
+  }
 }
 
 function addBookToLibrary(
@@ -82,6 +111,8 @@ const bookCards = document.getElementById("book-cards");
 
 function displayBooks() {
   myLibrary.forEach((book) => {
+    console.log(book.bookInfo);
+
     const div = document.createElement("div");
     div.classList.add("book-buttons");
     const table = document.createElement("table");
@@ -166,6 +197,7 @@ function addBooks(Event) {
 
   modal.style.display = "none";
   bookCards.textContent = "";
+
   displayBooks();
 }
 
